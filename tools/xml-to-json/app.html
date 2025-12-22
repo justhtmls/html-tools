@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML 转 JSON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .editor-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .editor-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .icon-btn:hover {
+            border-color: #a8edea;
+            background: #f0fdfd;
+        }
+
+        .editor-textarea {
+            width: 100%;
+            height: 450px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+            transition: border-color 0.3s;
+        }
+
+        .editor-textarea:focus {
+            outline: none;
+            border-color: #a8edea;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(168, 237, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            color: #555;
+        }
+
+        .error-msg {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: #c62828;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .error-msg.active {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+
+            .editor-textarea {
+                height: 300px;
+            }
+
+            .action-bar {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>XML 转 JSON</h1>
+            <p>将 XML 格式转换为 JSON 格式</p>
+        </div>
+
+        <div class="card">
+            <div class="options">
+                <div class="option-item">
+                    <input type="checkbox" id="auto-convert" checked>
+                    <label for="auto-convert">自动转换</label>
+                </div>
+                <div class="option-item">
+                    <input type="checkbox" id="pretty-print" checked>
+                    <label for="pretty-print">格式化输出</label>
+                </div>
+                <div class="option-item">
+                    <input type="checkbox" id="keep-attributes" checked>
+                    <label for="keep-attributes">保留属性</label>
+                </div>
+            </div>
+
+            <div class="action-bar">
+                <button class="btn" onclick="convertToJSON()">XML 转 JSON →</button>
+                <button class="btn" onclick="convertToXML()">← JSON 转 XML</button>
+                <button class="btn btn-secondary" onclick="loadSample()">示例</button>
+                <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+            </div>
+
+            <div class="error-msg" id="error-msg"></div>
+
+            <div class="editor-container">
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span class="editor-title">XML</span>
+                        <div class="editor-actions">
+                            <button class="icon-btn" onclick="copyToClipboard('xml-input')">复制</button>
+                            <button class="icon-btn" onclick="pasteFromClipboard('xml-input')">粘贴</button>
+                            <button class="icon-btn" onclick="document.getElementById('xml-input').value=''">清空</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea" id="xml-input" placeholder="在此输入 XML..." oninput="handleInput()"></textarea>
+                </div>
+
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span class="editor-title">JSON</span>
+                        <div class="editor-actions">
+                            <button class="icon-btn" onclick="copyToClipboard('json-output')">复制</button>
+                            <button class="icon-btn" onclick="pasteFromClipboard('json-output')">粘贴</button>
+                            <button class="icon-btn" onclick="document.getElementById('json-output').value=''">清空</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea" id="json-output" placeholder="转换结果将显示在这里..." readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let autoConvertTimeout;
+
+        function handleInput() {
+            if (document.getElementById('auto-convert').checked) {
+                clearTimeout(autoConvertTimeout);
+                autoConvertTimeout = setTimeout(() => {
+                    convertToJSON();
+                }, 500);
+            }
+        }
+
+        function convertToJSON() {
+            const xmlInput = document.getElementById('xml-input').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+            const jsonOutput = document.getElementById('json-output');
+            const prettyPrint = document.getElementById('pretty-print').checked;
+
+            if (!xmlInput) {
+                jsonOutput.value = '';
+                errorMsg.classList.remove('active');
+                return;
+            }
+
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlInput, 'text/xml');
+
+                // 检查解析错误
+                const parseError = xmlDoc.getElementsByTagName('parsererror');
+                if (parseError.length > 0) {
+                    throw new Error(parseError[0].textContent);
+                }
+
+                const jsonObj = xmlToJson(xmlDoc.documentElement);
+                jsonOutput.value = prettyPrint ? JSON.stringify(jsonObj, null, 2) : JSON.stringify(jsonObj);
+                errorMsg.classList.remove('active');
+            } catch (error) {
+                errorMsg.textContent = '转换失败: ' + error.message;
+                errorMsg.classList.add('active');
+            }
+        }
+
+        function convertToXML() {
+            const jsonInput = document.getElementById('json-output').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+            const xmlOutput = document.getElementById('xml-input');
+
+            if (!jsonInput) {
+                errorMsg.textContent = '请先在右侧输入 JSON';
+                errorMsg.classList.add('active');
+                return;
+            }
+
+            try {
+                const jsonObj = JSON.parse(jsonInput);
+                const xml = jsonToXml(jsonObj, 'root');
+                xmlOutput.value = formatXml(xml);
+                errorMsg.classList.remove('active');
+            } catch (error) {
+                errorMsg.textContent = '转换失败: ' + error.message;
+                errorMsg.classList.add('active');
+            }
+        }
+
+        function xmlToJson(xml) {
+            let obj = {};
+
+            // 处理属性
+            if (xml.attributes && xml.attributes.length > 0 && document.getElementById('keep-attributes').checked) {
+                obj['@attributes'] = {};
+                for (let i = 0; i < xml.attributes.length; i++) {
+                    const attr = xml.attributes[i];
+                    obj['@attributes'][attr.nodeName] = attr.nodeValue;
+                }
+            }
+
+            // 处理子节点
+            if (xml.hasChildNodes()) {
+                let textContent = '';
+                const children = {};
+
+                for (let i = 0; i < xml.childNodes.length; i++) {
+                    const node = xml.childNodes[i];
+
+                    if (node.nodeType === 3) { // 文本节点
+                        textContent += node.nodeValue.trim();
+                    } else if (node.nodeType === 1) { // 元素节点
+                        const childObj = xmlToJson(node);
+
+                        if (children[node.nodeName]) {
+                            if (!Array.isArray(children[node.nodeName])) {
+                                children[node.nodeName] = [children[node.nodeName]];
+                            }
+                            children[node.nodeName].push(childObj);
+                        } else {
+                            children[node.nodeName] = childObj;
+                        }
+                    }
+                }
+
+                // 添加子节点
+                Object.assign(obj, children);
+
+                // 如果只有文本内容，直接返回文本
+                if (textContent && Object.keys(obj).length === 0) {
+                    return textContent;
+                } else if (textContent) {
+                    obj['#text'] = textContent;
+                } else if (Object.keys(obj).length === 0) {
+                    return null;
+                }
+            }
+
+            return obj;
+        }
+
+        function jsonToXml(obj, rootName) {
+            let xml = '';
+
+            if (typeof obj === 'string' || typeof obj === 'number') {
+                return obj.toString();
+            }
+
+            if (Array.isArray(obj)) {
+                obj.forEach(item => {
+                    xml += `<item>${jsonToXml(item, '')}</item>`;
+                });
+                return xml;
+            }
+
+            for (const key in obj) {
+                const value = obj[key];
+
+                if (key === '@attributes') {
+                    for (const attr in value) {
+                        xml = xml.replace('>', ` ${attr}="${escapeXml(value[attr])}">`);
+                    }
+                } else if (key === '#text') {
+                    xml += escapeXml(value);
+                } else {
+                    const tagName = key || 'item';
+                    xml += `<${tagName}>`;
+                    xml += jsonToXml(value, key);
+                    xml += `</${tagName}>`;
+                }
+            }
+
+            return rootName ? `<${rootName}>${xml}</${rootName}>` : xml;
+        }
+
+        function escapeXml(str) {
+            return str.toString()
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+        }
+
+        function formatXml(xml) {
+            let formatted = '';
+            let pad = 0;
+            const tabs = '\t';
+
+            xml.split(/>\s*</).forEach(function(node) {
+                if (node.match(/^\/\w/)) pad -= 1;
+                let indent = '';
+                for (let i = 0; i < pad; i++) {
+                    indent += tabs;
+                }
+                formatted += indent + '<' + node + '>\r\n';
+                if (node.match(/^<?\w[^>]*[^\/]$/)) pad += 1;
+            });
+
+            return formatted.substring(1, formatted.length - 3);
+        }
+
+        function copyToClipboard(elementId) {
+            const textarea = document.getElementById(elementId);
+            if (!textarea.value) {
+                showToast('没有可复制的内容');
+                return;
+            }
+
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                showToast('已复制到剪贴板');
+            });
+        }
+
+        async function pasteFromClipboard(elementId) {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById(elementId).value = text;
+                handleInput();
+            } catch (err) {
+                showToast('无法访问剪贴板');
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('xml-input').value = '';
+            document.getElementById('json-output').value = '';
+            document.getElementById('error-msg').classList.remove('active');
+        }
+
+        function loadSample() {
+            const sampleXml = `<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book category="web">
+        <title lang="en">Learning XML</title>
+        <author>John Doe</author>
+        <year>2023</year>
+        <price>39.95</price>
+    </book>
+    <book category="programming">
+        <title lang="en">JavaScript Guide</title>
+        <author>Jane Smith</author>
+        <year>2024</year>
+        <price>49.99</price>
+    </book>
+</bookstore>`;
+
+            document.getElementById('xml-input').value = sampleXml;
+            convertToJSON();
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #333;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                z-index: 1000;
+                animation: fadeInOut 2s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

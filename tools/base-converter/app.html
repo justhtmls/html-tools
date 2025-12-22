@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进制转换工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .base-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .base-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .base-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .base-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .base-badge {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .base-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            transition: border-color 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .base-input:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        .base-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #3a9bdc;
+        }
+
+        .decimal-value {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .error-msg {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .options {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #e0e0e0;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            color: #555;
+        }
+
+        .active-input {
+            border-color: #4facfe !important;
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>进制转换工具</h1>
+            <p>支持二进制、八进制、十进制、十六进制互相转换</p>
+        </div>
+
+        <div class="card">
+            <div class="converter-grid">
+                <div class="base-item">
+                    <div class="base-header">
+                        <span class="base-title">二进制</span>
+                        <span class="base-badge">BASE-2</span>
+                    </div>
+                    <input type="text" class="base-input" id="binary" placeholder="0" oninput="convert('binary')">
+                    <div class="base-info">
+                        <span class="decimal-value" id="binary-decimal"></span>
+                        <button class="copy-btn" onclick="copyValue('binary')">复制</button>
+                    </div>
+                    <div class="error-msg" id="binary-error"></div>
+                </div>
+
+                <div class="base-item">
+                    <div class="base-header">
+                        <span class="base-title">八进制</span>
+                        <span class="base-badge">BASE-8</span>
+                    </div>
+                    <input type="text" class="base-input" id="octal" placeholder="0" oninput="convert('octal')">
+                    <div class="base-info">
+                        <span class="decimal-value" id="octal-decimal"></span>
+                        <button class="copy-btn" onclick="copyValue('octal')">复制</button>
+                    </div>
+                    <div class="error-msg" id="octal-error"></div>
+                </div>
+
+                <div class="base-item">
+                    <div class="base-header">
+                        <span class="base-title">十进制</span>
+                        <span class="base-badge">BASE-10</span>
+                    </div>
+                    <input type="text" class="base-input" id="decimal" placeholder="0" oninput="convert('decimal')">
+                    <div class="base-info">
+                        <span class="decimal-value">常用进制</span>
+                        <button class="copy-btn" onclick="copyValue('decimal')">复制</button>
+                    </div>
+                    <div class="error-msg" id="decimal-error"></div>
+                </div>
+
+                <div class="base-item">
+                    <div class="base-header">
+                        <span class="base-title">十六进制</span>
+                        <span class="base-badge">BASE-16</span>
+                    </div>
+                    <input type="text" class="base-input" id="hexadecimal" placeholder="0" oninput="convert('hexadecimal')">
+                    <div class="base-info">
+                        <span class="decimal-value" id="hexadecimal-decimal"></span>
+                        <button class="copy-btn" onclick="copyValue('hexadecimal')">复制</button>
+                    </div>
+                    <div class="error-msg" id="hexadecimal-error"></div>
+                </div>
+            </div>
+
+            <div class="options">
+                <div class="option-item">
+                    <input type="checkbox" id="auto-clear" checked>
+                    <label for="auto-clear">清空其他输入框</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bases = {
+            binary: { base: 2, prefix: '0b' },
+            octal: { base: 8, prefix: '0o' },
+            decimal: { base: 10, prefix: '' },
+            hexadecimal: { base: 16, prefix: '0x' }
+        };
+
+        let lastValidDecimal = null;
+
+        function convert(sourceBase) {
+            const input = document.getElementById(sourceBase);
+            const value = input.value.trim();
+            const autoClear = document.getElementById('auto-clear').checked;
+
+            // 清除所有错误信息
+            Object.keys(bases).forEach(base => {
+                document.getElementById(`${base}-error`).textContent = '';
+            });
+
+            if (!value) {
+                if (autoClear) {
+                    clearAll(sourceBase);
+                }
+                lastValidDecimal = null;
+                return;
+            }
+
+            let decimalValue;
+
+            try {
+                // 解析输入值
+                decimalValue = parseValue(value, sourceBase);
+
+                if (isNaN(decimalValue)) {
+                    throw new Error('无效的数值');
+                }
+
+                if (!Number.isFinite(decimalValue)) {
+                    throw new Error('数值超出范围');
+                }
+
+                lastValidDecimal = decimalValue;
+
+                // 显示十进制值
+                if (sourceBase !== 'decimal') {
+                    document.getElementById(`${sourceBase}-decimal`).textContent =
+                        `= ${decimalValue.toLocaleString()}`;
+                }
+
+                // 转换到其他进制
+                Object.keys(bases).forEach(base => {
+                    if (base !== sourceBase) {
+                        const converted = decimalValue.toString(bases[base].base).toUpperCase();
+                        document.getElementById(base).value = converted;
+
+                        // 更新十进制显示
+                        if (base !== 'decimal') {
+                            document.getElementById(`${base}-decimal`).textContent =
+                                `= ${decimalValue.toLocaleString()}`;
+                        }
+
+                        // 添加高亮
+                        document.getElementById(base).classList.add('active-input');
+                        setTimeout(() => {
+                            document.getElementById(base).classList.remove('active-input');
+                        }, 500);
+                    }
+                });
+
+            } catch (error) {
+                document.getElementById(`${sourceBase}-error`).textContent = error.message;
+            }
+        }
+
+        function parseValue(value, base) {
+            const info = bases[base];
+            let cleanValue = value.trim();
+
+            // 移除可能的进制前缀
+            if (cleanValue.toLowerCase().startsWith(info.prefix) && info.prefix) {
+                cleanValue = cleanValue.slice(info.prefix.length);
+            }
+
+            // 移除可能的 0x, 0o, 0b 前缀
+            cleanValue = cleanValue.replace(/^(0x|0o|0b)/i, '');
+
+            // 解析为 BigInt（支持大数）
+            try {
+                return BigInt(parseInt(cleanValue, info.base));
+            } catch {
+                // 回退到普通整数
+                const parsed = parseInt(cleanValue, info.base);
+                if (isNaN(parsed)) {
+                    throw new Error('格式错误');
+                }
+                return parsed;
+            }
+        }
+
+        function clearAll(except) {
+            Object.keys(bases).forEach(base => {
+                if (base !== except) {
+                    document.getElementById(base).value = '';
+                    document.getElementById(`${base}-decimal`).textContent = '';
+                }
+            });
+        }
+
+        function copyValue(base) {
+            const input = document.getElementById(base);
+            const value = input.value;
+
+            if (!value) {
+                showToast('没有可复制的内容');
+                return;
+            }
+
+            navigator.clipboard.writeText(value).then(() => {
+                showToast(`已复制 ${bases[base].prefix}${value}`);
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #333;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                z-index: 1000;
+                animation: fadeInOut 2s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        // 添加动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

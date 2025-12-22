@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片转 Base64 - JustHTMLs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #ff9a9e;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px 10px 10px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .preview {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .preview iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>图片转 Base64</h1>
+            <p>将图片转换为 Base64 编码字符串</p>
+        </div>
+
+        <div class="card">
+            <h2>关于这个工具</h2>
+            <p>图片转 Base64 工具可以将图片文件转换为 Base64 编码的字符串。Base64 编码的图片可以直接嵌入 HTML、CSS 或 JavaScript 中，无需额外的 HTTP 请求。</p>
+
+            <h2>功能特点</h2>
+            <ul class="features">
+                <li>支持拖拽上传图片</li>
+                <li>支持 JPG、PNG、GIF、WebP 等常见格式</li>
+                <li>实时预览图片</li>
+                <li>显示图片尺寸和文件大小信息</li>
+                <li>输出 Data URI 或纯 Base64 字符串</li>
+                <li>一键复制或下载 Base64 数据</li>
+                <li>完全在浏览器本地处理，保护隐私</li>
+            </ul>
+
+            <h2>使用场景</h2>
+            <ul class="features">
+                <li>在 HTML 中嵌入小图标</li>
+                <li>CSS 背景图片内联</li>
+                <li>减少 HTTP 请求数量</li>
+                <li>Email 中的图片嵌入</li>
+                <li>单文件 HTML 应用中的图片</li>
+            </ul>
+
+            <div style="margin-top: 30px;">
+                <a href="app.html" class="btn">开始使用</a>
+                <a href="https://github.com/justhtmls/html-tools/tree/main/tools/image-to-base64" target="_blank" class="btn btn-secondary">查看源码</a>
+                <a href="../../index.html" class="btn btn-secondary">返回首页</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>快速预览</h2>
+            <div class="preview">
+                <iframe src="app.html" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

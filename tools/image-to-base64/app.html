@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片转 Base64</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .upload-area {
+            border: 3px dashed #e0e0e0;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .upload-area:hover,
+        .upload-area.drag-over {
+            border-color: #ff9a9e;
+            background: #fff0f1;
+        }
+
+        .upload-icon {
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .upload-hint {
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .preview-section {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .preview-section.active {
+            display: block;
+        }
+
+        .image-preview {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .output-section {
+            margin-top: 20px;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .output-header h3 {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .output-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            resize: vertical;
+        }
+
+        .output-textarea:focus {
+            outline: none;
+            border-color: #ff9a9e;
+        }
+
+        .format-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .format-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .format-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .format-option label {
+            cursor: pointer;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .output-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>图片转 Base64</h1>
+            <p>将图片转换为 Base64 编码字符串</p>
+        </div>
+
+        <div class="card">
+            <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">点击上传或拖拽图片到此处</div>
+                <div class="upload-hint">支持 JPG、PNG、GIF、WebP 等格式</div>
+            </div>
+            <input type="file" id="file-input" class="file-input" accept="image/*" onchange="handleFile(this.files[0])">
+
+            <div class="preview-section" id="preview-section">
+                <div class="image-preview">
+                    <img id="preview-img" class="preview-img" alt="预览图片">
+                    <div class="image-info">
+                        <div class="info-item">
+                            <div class="info-label">文件名</div>
+                            <div class="info-value" id="file-name">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">尺寸</div>
+                            <div class="info-value" id="image-dimensions">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">原始大小</div>
+                            <div class="info-value" id="file-size">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Base64 大小</div>
+                            <div class="info-value" id="base64-size">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <div class="output-header">
+                        <h3>Base64 输出</h3>
+                        <div class="output-actions">
+                            <button class="btn btn-primary" onclick="copyBase64()">复制 Base64</button>
+                            <button class="btn btn-secondary" onclick="downloadBase64()">下载文件</button>
+                            <button class="btn btn-secondary" onclick="reset()">重新上传</button>
+                        </div>
+                    </div>
+
+                    <div class="format-options">
+                        <div class="format-option">
+                            <input type="radio" id="format-data-uri" name="format" value="data-uri" checked onchange="updateOutput()">
+                            <label for="format-data-uri">Data URI (包含前缀)</label>
+                        </div>
+                        <div class="format-option">
+                            <input type="radio" id="format-base64-only" name="format" value="base64-only" onchange="updateOutput()">
+                            <label for="format-base64-only">仅 Base64 字符串</label>
+                        </div>
+                    </div>
+
+                    <textarea class="output-textarea" id="output-text" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentBase64 = '';
+        let currentMimeType = '';
+        let currentFileName = '';
+
+        const uploadArea = document.getElementById('upload-area');
+
+        // 拖拽事件
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-over');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                handleFile(file);
+            } else {
+                showToast('请上传图片文件');
+            }
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+
+            currentFileName = file.name;
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // 显示预览
+                    document.getElementById('preview-img').src = e.target.result;
+                    document.getElementById('preview-section').classList.add('active');
+                    document.getElementById('upload-area').style.display = 'none';
+
+                    // 获取 Base64 数据
+                    const dataUri = e.target.result;
+                    currentBase64 = dataUri.split(',')[1];
+                    currentMimeType = file.type;
+
+                    // 显示信息
+                    document.getElementById('file-name').textContent = file.name;
+                    document.getElementById('image-dimensions').textContent = `${img.width} x ${img.height}`;
+                    document.getElementById('file-size').textContent = formatBytes(file.size);
+                    document.getElementById('base64-size').textContent = formatBytes(dataUri.length);
+
+                    updateOutput();
+                };
+                img.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function updateOutput() {
+            const format = document.querySelector('input[name="format"]:checked').value;
+            let output;
+
+            if (format === 'data-uri') {
+                output = `data:${currentMimeType};base64,${currentBase64}`;
+            } else {
+                output = currentBase64;
+            }
+
+            document.getElementById('output-text').value = output;
+        }
+
+        function copyBase64() {
+            const output = document.getElementById('output-text').value;
+            if (!output) {
+                showToast('没有可复制的内容');
+                return;
+            }
+
+            navigator.clipboard.writeText(output).then(() => {
+                showToast('已复制到剪贴板');
+            });
+        }
+
+        function downloadBase64() {
+            const output = document.getElementById('output-text').value;
+            if (!output) {
+                showToast('没有可下载的内容');
+                return;
+            }
+
+            const blob = new Blob([output], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${currentFileName.split('.')[0]}_base64.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('已开始下载');
+        }
+
+        function reset() {
+            document.getElementById('preview-section').classList.remove('active');
+            document.getElementById('upload-area').style.display = 'block';
+            document.getElementById('file-input').value = '';
+            document.getElementById('output-text').value = '';
+            currentBase64 = '';
+            currentMimeType = '';
+            currentFileName = '';
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return (bytes / Math.pow(k, i)).toFixed(2) + ' ' + sizes[i];
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #333;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                z-index: 1000;
+                animation: fadeInOut 2s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

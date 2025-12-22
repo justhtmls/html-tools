@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字数统计工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-area {
+            margin-bottom: 25px;
+        }
+
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .input-header h3 {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .clear-btn:hover {
+            background: #c82333;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #11998e;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .detail-value {
+            color: #11998e;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .reading-time {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .reading-time p {
+            color: #2e7d32;
+            font-size: 1.1rem;
+        }
+
+        .reading-time span {
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-item label {
+            cursor: pointer;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-value {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>字数统计工具</h1>
+            <p>实时统计文本的字数、词数、行数等信息</p>
+        </div>
+
+        <div class="card">
+            <div class="input-area">
+                <div class="input-header">
+                    <h3>输入文本</h3>
+                    <button class="clear-btn" onclick="clearText()">清空</button>
+                </div>
+                <textarea id="input" placeholder="在此输入或粘贴文本..." oninput="analyze()"></textarea>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="chars">0</div>
+                    <div class="stat-label">字符数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="chars-no-space">0</div>
+                    <div class="stat-label">字符数(不含空格)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="words">0</div>
+                    <div class="stat-label">词数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="lines">0</div>
+                    <div class="stat-label">行数</div>
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <span class="detail-label">中文字符</span>
+                    <span class="detail-value" id="chinese">0</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">英文字符</span>
+                    <span class="detail-value" id="english">0</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">数字</span>
+                    <span class="detail-value" id="numbers">0</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">标点符号</span>
+                    <span class="detail-value" id="punctuation">0</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">空格数</span>
+                    <span class="detail-value" id="spaces">0</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">段落数</span>
+                    <span class="detail-value" id="paragraphs">0</span>
+                </div>
+            </div>
+
+            <div class="reading-time">
+                <p>预计阅读时间: <span id="reading-time">0</span> 分钟 (按 200 字/分钟计算)</p>
+            </div>
+
+            <div class="options">
+                <div class="option-item">
+                    <input type="checkbox" id="count-space" checked onchange="analyze()">
+                    <label for="count-space">统计空格</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function analyze() {
+            const text = document.getElementById('input').value;
+            const countSpace = document.getElementById('count-space').checked;
+
+            // 字符数
+            const chars = text.length;
+            const charsNoSpace = countSpace ? text.replace(/\s/g, '').length : chars;
+
+            // 词数 (英文按空格分词，中文按字符计算)
+            const englishWords = text.match(/[a-zA-Z]+/g) || [];
+            const chineseChars = text.match(/[\u4e00-\u9fa5]/g) || [];
+            const words = englishWords.length + chineseChars.length;
+
+            // 行数
+            const lines = text === '' ? 0 : text.split('\n').length;
+
+            // 统计各类字符
+            const chinese = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
+            const english = (text.match(/[a-zA-Z]/g) || []).length;
+            const numbers = (text.match(/[0-9]/g) || []).length;
+            const punctuation = (text.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~，。！？；：""''（）【】《》、]/g) || []).length;
+            const spaces = (text.match(/\s/g) || []).length;
+
+            // 段落数
+            const paragraphs = text.trim() === '' ? 0 : text.split(/\n\s*\n/).filter(p => p.trim()).length;
+
+            // 阅读时间 (200 字/分钟)
+            const readingTime = Math.ceil(chars / 200);
+
+            // 更新显示
+            document.getElementById('chars').textContent = chars.toLocaleString();
+            document.getElementById('chars-no-space').textContent = charsNoSpace.toLocaleString();
+            document.getElementById('words').textContent = words.toLocaleString();
+            document.getElementById('lines').textContent = lines.toLocaleString();
+            document.getElementById('chinese').textContent = chinese.toLocaleString();
+            document.getElementById('english').textContent = english.toLocaleString();
+            document.getElementById('numbers').textContent = numbers.toLocaleString();
+            document.getElementById('punctuation').textContent = punctuation.toLocaleString();
+            document.getElementById('spaces').textContent = spaces.toLocaleString();
+            document.getElementById('paragraphs').textContent = paragraphs.toLocaleString();
+            document.getElementById('reading-time').textContent = readingTime;
+        }
+
+        function clearText() {
+            document.getElementById('input').value = '';
+            analyze();
+        }
+
+        // 初始化
+        analyze();
+    </script>
+</body>
+</html>

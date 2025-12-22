@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT 解码器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .input-area {
+            margin-bottom: 25px;
+        }
+
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .input-header h3 {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .clear-btn:hover {
+            background: #c82333;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .part-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .part-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .part-title {
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .part-content {
+            padding: 20px;
+        }
+
+        .json-display {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .json-key {
+            color: #e06c75;
+        }
+
+        .json-string {
+            color: #98c379;
+        }
+
+        .json-number {
+            color: #d19a66;
+        }
+
+        .json-boolean {
+            color: #56b6c2;
+        }
+
+        .json-null {
+            color: #c678dd;
+        }
+
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            color: #2e7d32;
+            font-size: 14px;
+        }
+
+        .info-box.warning {
+            background: #fff3e0;
+            border-left-color: #ff9800;
+        }
+
+        .info-box.warning p {
+            color: #e65100;
+        }
+
+        .error-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .error-box p {
+            color: #c62828;
+            font-size: 14px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .parts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JWT 解码器</h1>
+            <p>解码和验证 JSON Web Token</p>
+        </div>
+
+        <div class="card">
+            <div class="info-box">
+                <p>JWT 只会进行 Base64 解码，不会验证签名。请不要在生产环境中使用解码后的敏感信息。</p>
+            </div>
+
+            <div class="input-area">
+                <div class="input-header">
+                    <h3>输入 JWT Token</h3>
+                    <button class="clear-btn" onclick="clearInput()">清空</button>
+                </div>
+                <textarea id="jwt-input" placeholder="粘贴你的 JWT Token 在这里..." oninput="decode()"></textarea>
+                <div id="error-output"></div>
+            </div>
+
+            <div id="output">
+                <div class="empty-state">
+                    <p>输入 JWT Token 查看解码结果</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function decode() {
+            const input = document.getElementById('jwt-input').value.trim();
+            const output = document.getElementById('output');
+            const errorOutput = document.getElementById('error-output');
+
+            errorOutput.innerHTML = '';
+
+            if (!input) {
+                output.innerHTML = `
+                    <div class="empty-state">
+                        <p>输入 JWT Token 查看解码结果</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const parts = input.split('.');
+
+            if (parts.length !== 3) {
+                errorOutput.innerHTML = `
+                    <div class="error-box">
+                        <p>无效的 JWT 格式。JWT 应该包含 3 个部分，用点号分隔。</p>
+                    </div>
+                `;
+                output.innerHTML = '';
+                return;
+            }
+
+            try {
+                const header = JSON.parse(atob(parts[0]));
+                const payload = JSON.parse(atob(parts[1]));
+                const signature = parts[2];
+
+                // 检查过期时间
+                let warningHtml = '';
+                if (payload.exp) {
+                    const expDate = new Date(payload.exp * 1000);
+                    const now = new Date();
+                    const isExpired = now > expDate;
+
+                    if (isExpired) {
+                        warningHtml = `
+                            <div class="info-box warning">
+                                <p>⚠️ 此 Token 已过期（过期时间: ${expDate.toLocaleString('zh-CN')}）</p>
+                            </div>
+                        `;
+                    } else {
+                        warningHtml = `
+                            <div class="info-box">
+                                <p>✓ Token 有效（过期时间: ${expDate.toLocaleString('zh-CN')}）</p>
+                            </div>
+                        `;
+                    }
+                }
+
+                output.innerHTML = warningHtml + `
+                    <div class="parts-grid">
+                        <div class="part-card">
+                            <div class="part-header">
+                                <span class="part-title">Header (头部)</span>
+                                <button class="copy-btn" onclick="copyPart('header')">复制</button>
+                            </div>
+                            <div class="part-content">
+                                <div class="json-display" id="header-display">${formatJson(header)}</div>
+                            </div>
+                        </div>
+
+                        <div class="part-card">
+                            <div class="part-header">
+                                <span class="part-title">Payload (负载)</span>
+                                <button class="copy-btn" onclick="copyPart('payload')">复制</button>
+                            </div>
+                            <div class="part-content">
+                                <div class="json-display" id="payload-display">${formatJson(payload)}</div>
+                            </div>
+                        </div>
+
+                        <div class="part-card">
+                            <div class="part-header">
+                                <span class="part-title">Signature (签名)</span>
+                                <button class="copy-btn" onclick="copyPart('signature')">复制</button>
+                            </div>
+                            <div class="part-content">
+                                <div class="json-display" id="signature-display">${signature}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                errorOutput.innerHTML = `
+                    <div class="error-box">
+                        <p>解码失败: ${error.message}</p>
+                    </div>
+                `;
+                output.innerHTML = '';
+            }
+        }
+
+        function formatJson(obj) {
+            return JSON.stringify(obj, null, 2);
+        }
+
+        function clearInput() {
+            document.getElementById('jwt-input').value = '';
+            decode();
+        }
+
+        function copyPart(part) {
+            let content;
+            switch (part) {
+                case 'header':
+                    content = document.getElementById('header-display').textContent;
+                    break;
+                case 'payload':
+                    content = document.getElementById('payload-display').textContent;
+                    break;
+                case 'signature':
+                    content = document.getElementById('signature-display').textContent;
+                    break;
+            }
+
+            navigator.clipboard.writeText(content).then(() => {
+                showToast('已复制到剪贴板');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #333;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                z-index: 1000;
+                animation: fadeInOut 2s ease;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

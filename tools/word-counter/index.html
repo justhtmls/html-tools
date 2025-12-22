@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字数统计工具 - JustHTMLs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .features li:before {
+            content: "✓";
+            color: #11998e;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px 10px 10px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(17, 153, 142, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .preview {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .preview iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>字数统计工具</h1>
+            <p>实时统计文本的字数、词数、行数等信息</p>
+        </div>
+
+        <div class="card">
+            <h2>关于这个工具</h2>
+            <p>这是一个简单易用的字数统计工具，可以实时分析中英文混合文本的各种统计数据。支持字符数、词数、行数、段落数等多种统计维度。</p>
+
+            <h2>功能特点</h2>
+            <ul class="features">
+                <li>实时统计，输入即分析</li>
+                <li>支持中英文混合文本</li>
+                <li>统计字符数、词数、行数、段落数</li>
+                <li>分类统计：中文、英文、数字、标点符号</li>
+                <li>计算预计阅读时间</li>
+                <li>完全在浏览器本地运行，保护隐私</li>
+            </ul>
+
+            <h2>使用场景</h2>
+            <ul class="features">
+                <li>文章写作字数统计</li>
+                <li>论文格式检查</li>
+                <li>社交媒体文案字数限制检查</li>
+                <li>代码行数统计</li>
+                <li>翻译字数计算</li>
+            </ul>
+
+            <div style="margin-top: 30px;">
+                <a href="app.html" class="btn">开始使用</a>
+                <a href="https://github.com/justhtmls/html-tools/tree/main/tools/word-counter" target="_blank" class="btn btn-secondary">查看源码</a>
+                <a href="../../index.html" class="btn btn-secondary">返回首页</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>快速预览</h2>
+            <div class="preview">
+                <iframe src="app.html" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
