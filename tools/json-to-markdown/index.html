@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 转 Markdown 表格 - JustHTMLs</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/json-to-markdown/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onerror="this.onerror=null;this.href='/assets/vendor/fontawesome/css/all.min.css';">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --secondary: #0f766e;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        main {
+            padding: 40px 0 80px;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tool-icon-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .tool-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .tool-description {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tool-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .tool-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tool-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .info-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .info-section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            color: var(--text-muted);
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+        }
+
+        .feature-item i {
+            color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .tool-title {
+                font-size: 28px;
+            }
+
+            .tool-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a class="back-link" href="../../index.html">
+                <i class="fas fa-arrow-left"></i> 返回工具首页
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="tool-header">
+                <div class="tool-icon-large">📊</div>
+                <h1 class="tool-title">JSON 转 Markdown 表格</h1>
+                <p class="tool-description">将 JSON 数组转换为 Markdown 表格</p>
+                <div class="tool-meta">
+                    <div class="tool-meta-item"><i class="fas fa-tag"></i> json, markdown, table</div>
+                    <div class="tool-meta-item"><i class="far fa-calendar"></i> 2025-12-23</div>
+                </div>
+                <div class="tool-actions">
+                    <a class="btn btn-primary" href="app.html"><i class="fas fa-play"></i> 开始使用</a>
+                    <a class="btn btn-secondary" href="../../index.html"><i class="fas fa-th"></i> 浏览工具</a>
+                </div>
+            </div>
+
+            <section class="info-section">
+                <h2>工具介绍</h2>
+                <p>JSON 转 Markdown 表格工具支持将 JSON 数组转换为 Markdown 表格格式。</p>
+            </section>
+
+            <section class="info-section">
+                <h2>使用亮点</h2>
+                <div class="feature-list">
+                    <div class=\"feature-item\"><i class=\"fas fa-check-circle\"></i>单文件 HTML，无需安装即可使用</div><div class=\"feature-item\"><i class=\"fas fa-check-circle\"></i>数据本地处理，保护隐私</div><div class=\"feature-item\"><i class=\"fas fa-check-circle\"></i>支持复制输出结果</div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

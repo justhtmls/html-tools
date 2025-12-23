@@ -615,6 +615,9 @@
                     <a href="https://github.com/justhtmls/html-tools/issues/new?template=feedback.md" target="_blank" class="btn btn-secondary">
                         <i class="fas fa-comment-dots"></i> 问题反馈
                     </a>
+                    <a href="tools-rank.html" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> 工具排行
+                    </a>
                     <a href="https://github.com/justhtmls/html-tools/issues/new?template=tool-request.md" target="_blank" class="btn btn-secondary">
                         <i class="fas fa-lightbulb"></i> 提交需求
                     </a>
@@ -636,11 +639,11 @@
                 <p>所有工具均为单文件 HTML，无需安装，打开即用。保护隐私，数据本地处理。</p>
                 <div class="stats">
                     <div class="stat-item">
-                        <div class="stat-value" id="tools-count">-</div>
+                        <div class="stat-value" id="tools-count">100</div>
                         <div class="stat-label">工具数量</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value" id="categories-count">-</div>
+                        <div class="stat-value" id="categories-count">5</div>
                         <div class="stat-label">分类数量</div>
                     </div>
                     <div class="stat-item">
@@ -720,6 +723,7 @@
                     <h3>快速链接</h3>
                     <ul class="footer-links">
                         <li><a href="https://github.com/justhtmls" target="_blank"><i class="fab fa-github"></i> GitHub 组织</a></li>
+                        <li><a href="tools-rank.html"><i class="fas fa-chart-line"></i> 工具排行</a></li>
                         <li><a href="https://github.com/justhtmls/html-tools" target="_blank"><i class="fas fa-globe"></i> 网站仓库</a></li>
                         <li><a href="https://github.com/justhtmls/html-tools/issues" target="_blank"><i class="fas fa-bug"></i> 报告问题</a></li>
                         <li><a href="CONTRIBUTING.html">贡献指南</a></li>
@@ -746,7 +750,6 @@
         let currentCategory = 'all';
         let searchQuery = '';
         let sortOption = 'updated-desc';
-        let clickStats = {};
 
         async function loadTools() {
             try {
@@ -756,7 +759,6 @@
                 renderCategories();
                 renderTools();
                 updateStats();
-                loadClickStats();
             } catch (error) {
                 console.error('Failed to load tools:', error);
                 document.getElementById('tools-grid').innerHTML = `
@@ -836,7 +838,6 @@
             container.innerHTML = filteredTools.map(tool => {
                 const category = toolsData.categories.find(c => c.id === tool.category);
                 const updatedAt = tool.updatedAt || tool.createdAt || '未知';
-                const stats = clickStats[tool.id];
                 return `
                     <a href="${tool.detail}" class="tool-card" style="--tool-color: ${tool.color}">
                         ${tool.featured ? '<span class="featured-badge">精选</span>' : ''}
@@ -856,10 +857,6 @@
                                 ${tool.tags.slice(0, 3).map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
                             </div>
                             <div class="tool-meta">
-                                <div class="tool-clicks">
-                                    <span><i class="far fa-chart-bar"></i> 今日 PV/UV ${formatPair(stats?.pv?.day, stats?.uv?.day)}</span>
-                                    <span><i class="far fa-eye"></i> 总 PV/UV ${formatPair(stats?.pv?.total, stats?.uv?.total)}</span>
-                                </div>
                                 <i class="fas fa-arrow-right tool-arrow"></i>
                             </div>
                         </div>
@@ -877,21 +874,6 @@
 
         function formatPair(pv, uv) {
             return `${formatCount(pv)}/${formatCount(uv)}`;
-        }
-
-        async function loadClickStats() {
-            try {
-                const ids = toolsData.tools.map(tool => tool.id).join(',');
-                const response = await fetch(`/api/clicks?ids=${encodeURIComponent(ids)}`);
-                if (!response.ok) {
-                    return;
-                }
-                const data = await response.json();
-                clickStats = data.counts || {};
-                renderTools();
-            } catch (error) {
-                console.warn('Failed to load click counts', error);
-            }
         }
 
         async function loadHomeStats() {

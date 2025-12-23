@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanoID 生成器</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/nanoid-generator/app.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #3b82f6 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .output-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .output-box label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .output-box textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NanoID 生成器</h1>
+            <p>生成安全短 ID（NanoID）</p>
+        </div>
+
+        <div class="card">
+            <div class="form-grid">
+    <div class="form-field">
+        <label for="nanoid-length">长度</label>
+        <input id="nanoid-length" type="number" value="21" min="4" max="64">
+    </div>
+    <div class="form-field">
+        <label for="nanoid-alphabet">字符集（可选）</label>
+        <input id="nanoid-alphabet" type="text" placeholder="默认字母数字">
+    </div>
+</div>
+<div class="form-actions">
+    <button class="btn" onclick="generateNanoId()">生成 NanoID</button>
+    <button class="btn btn-secondary" onclick="clearOutput()">清空输出</button>
+</div>
+<div class="output-box">
+    <label>NanoID 输出</label>
+    <textarea id="nanoid-output" rows="3" readonly></textarea>
+</div>
+        </div>
+    </div>
+
+    <script>
+        function generateNanoId() {
+    const length = parseInt(document.getElementById('nanoid-length').value, 10) || 21;
+    const customAlphabet = document.getElementById('nanoid-alphabet').value.trim();
+    const alphabet = customAlphabet || '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const bytes = new Uint8Array(length);
+    crypto.getRandomValues(bytes);
+    let id = '';
+    for (let i = 0; i < length; i++) {
+        id += alphabet[bytes[i] % alphabet.length];
+    }
+    document.getElementById('nanoid-output').value = id;
+}
+
+function clearOutput() {
+    document.getElementById('nanoid-output').value = '';
+}
+    </script>
+
+    <script src="/assets/clicks.js" defer></script>
+</body>
+</html>

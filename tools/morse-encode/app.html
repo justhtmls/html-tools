@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摩斯电码编码</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/morse-encode/app.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #22c55e 0%, #22c55e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #22c55e 0%, #22c55e 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .editor-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .editor-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .editor-textarea {
+            width: 100%;
+            flex: 1;
+            min-height: 320px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+            transition: border-color 0.3s;
+        }
+
+        .editor-textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+        }
+
+        .status-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .status-box.error {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        .status-box.active {
+            display: block;
+        }
+
+        .status-box p {
+            color: #2e7d32;
+            font-size: 14px;
+        }
+
+        .status-box.error p {
+            color: #c62828;
+        }
+
+        .controls {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .control {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .control input,
+        .control select,
+        .control textarea {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #d0d7de;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+
+            .editor-textarea {
+                min-height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>摩斯电码编码</h1>
+            <p>将文本编码为摩斯电码</p>
+        </div>
+
+        <div class="card">
+            <div class="status-box" id="status-box">
+                <p id="status-message">已完成转换</p>
+            </div>
+
+            <div class="action-bar">
+                <div class="btn-group">
+                    <button class="btn" onclick="convert()">立即转换</button>
+                    <button class="btn btn-secondary" onclick="loadSample()">示例</button>
+                    <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                </div>
+                <div class="controls"></div>
+            </div>
+
+            <div class="editor-container">
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span class="editor-title">输入</span>
+                    </div>
+                    <textarea class="editor-textarea" id="input" placeholder="输入英文或数字..."></textarea>
+                </div>
+
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span class="editor-title">输出</span>
+                    </div>
+                    <textarea class="editor-textarea" id="output" placeholder="摩斯电码结果将显示在这里..." readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const MORSE_MAP = {
+  A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.",
+  G: "--.", H: "....", I: "..", J: ".---", K: "-.-", L: ".-..",
+  M: "--", N: "-.", O: "---", P: ".--.", Q: "--.-", R: ".-.",
+  S: "...", T: "-", U: "..-", V: "...-", W: ".--", X: "-..-",
+  Y: "-.--", Z: "--..",
+  0: "-----", 1: ".----", 2: "..---", 3: "...--", 4: "....-",
+  5: ".....", 6: "-....", 7: "--...", 8: "---..", 9: "----.",
+  ".": ".-.-.-", ",": "--..--", "?": "..--..", "!": "-.-.--",
+  "/": "-..-.", "-": "-....-", "(": "-.--.", ")": "-.--.-"
+};
+function morseEncode(input) {
+  return input.toUpperCase().split("").map(char => {
+    if (char === " ") return "/";
+    return MORSE_MAP[char] || "";
+  }).filter(Boolean).join(" ");
+}
+
+        function transform(input) {
+            return morseEncode(input);
+        }
+
+        function convert() {
+            const input = document.getElementById('input').value;
+            const statusBox = document.getElementById('status-box');
+            const statusMessage = document.getElementById('status-message');
+            const output = document.getElementById('output');
+
+            if (!input.trim()) {
+                statusBox.className = 'status-box error active';
+                statusMessage.textContent = '请输入内容再转换';
+                output.value = '';
+                return;
+            }
+
+            try {
+                const result = transform(input);
+                output.value = result;
+                statusBox.className = 'status-box active';
+                statusMessage.textContent = '✓ 转换完成';
+            } catch (error) {
+                statusBox.className = 'status-box error active';
+                statusMessage.textContent = '✗ 转换失败: ' + error.message;
+                output.value = '';
+            }
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+            document.getElementById('status-box').classList.remove('active');
+        }
+
+        function loadSample() {
+            document.getElementById('input').value = `SOS 123`;
+            convert();
+        }
+    </script>
+
+    <script src="/assets/clicks.js" defer></script>
+</body>
+</html>

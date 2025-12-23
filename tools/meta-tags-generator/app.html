@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta 标签生成器</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/meta-tags-generator/app.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #14b8a6 0%, #14b8a6 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #14b8a6 0%, #14b8a6 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .output-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .output-box label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .output-box textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Meta 标签生成器</h1>
+            <p>快速生成网页 SEO Meta 标签</p>
+        </div>
+
+        <div class="card">
+            <div class="form-grid">
+    <div class="form-field">
+        <label for="meta-title">标题</label>
+        <input id="meta-title" type="text" placeholder="页面标题">
+    </div>
+    <div class="form-field">
+        <label for="meta-description">描述</label>
+        <textarea id="meta-description" rows="3" placeholder="页面描述"></textarea>
+    </div>
+    <div class="form-field">
+        <label for="meta-keywords">关键词</label>
+        <input id="meta-keywords" type="text" placeholder="keyword1, keyword2">
+    </div>
+    <div class="form-field">
+        <label for="meta-url">页面 URL</label>
+        <input id="meta-url" type="text" placeholder="https://example.com">
+    </div>
+    <div class="form-field">
+        <label for="meta-image">分享图片 URL</label>
+        <input id="meta-image" type="text" placeholder="https://example.com/og.png">
+    </div>
+</div>
+<div class="form-actions">
+    <button class="btn" onclick="generateMetaTags()">生成 Meta 标签</button>
+    <button class="btn btn-secondary" onclick="clearOutput()">清空输出</button>
+</div>
+<div class="output-box">
+    <label>Meta 标签输出</label>
+    <textarea id="meta-output" rows="8" readonly></textarea>
+</div>
+        </div>
+    </div>
+
+    <script>
+        function generateMetaTags() {
+                const title = document.getElementById('meta-title').value.trim();
+                const description = document.getElementById('meta-description').value.trim();
+                const keywords = document.getElementById('meta-keywords').value.trim();
+                const url = document.getElementById('meta-url').value.trim();
+                const image = document.getElementById('meta-image').value.trim();
+
+                const lines = [];
+                if (title) lines.push(`<title>${title}</title>`);
+                if (description) lines.push(`<meta name="description" content="${description}">`);
+                if (keywords) lines.push(`<meta name="keywords" content="${keywords}">`);
+                if (url) lines.push(`<link rel="canonical" href="${url}">`);
+                if (title) lines.push(`<meta property="og:title" content="${title}">`);
+                if (description) lines.push(`<meta property="og:description" content="${description}">`);
+                if (url) lines.push(`<meta property="og:url" content="${url}">`);
+                if (image) lines.push(`<meta property="og:image" content="${image}">`);
+
+                document.getElementById('meta-output').value = lines.join('
+');
+            }
+
+            function clearOutput() {
+                document.getElementById('meta-output').value = '';
+            }
+    </script>
+
+    <script src="/assets/clicks.js" defer></script>
+</body>
+</html>

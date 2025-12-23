@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap 生成器</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/sitemap-generator/app.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ec4899 0%, #ec4899 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #ec4899 0%, #ec4899 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .output-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .output-box label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .output-box textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sitemap 生成器</h1>
+            <p>根据 URL 列表生成 sitemap.xml</p>
+        </div>
+
+        <div class="card">
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="sitemap-urls">URL 列表（每行一个）</label>
+                    <textarea id="sitemap-urls" rows="6" placeholder="https://example.com/
+https://example.com/about"></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="sitemap-changefreq">changefreq</label>
+                    <select id="sitemap-changefreq">
+                        <option value="daily">daily</option>
+                        <option value="weekly">weekly</option>
+                        <option value="monthly">monthly</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="sitemap-priority">priority</label>
+                    <input id="sitemap-priority" type="number" step="0.1" min="0" max="1" value="0.8">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn" onclick="generateSitemap()">生成 Sitemap</button>
+                <button class="btn btn-secondary" onclick="clearOutput()">清空输出</button>
+            </div>
+            <div class="output-box">
+                <label>Sitemap 输出</label>
+                <textarea id="sitemap-output" rows="8" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateSitemap() {
+                const urls = document.getElementById('sitemap-urls').value.split(/?
+/).filter(Boolean);
+                const changefreq = document.getElementById('sitemap-changefreq').value;
+                const priority = document.getElementById('sitemap-priority').value;
+                const items = urls.map(url => {
+                    return `  <url>
+    <loc>${url}</loc>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+                }).join('
+');
+                const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${items}
+</urlset>`;
+                document.getElementById('sitemap-output').value = xml;
+            }
+
+            function clearOutput() {
+                document.getElementById('sitemap-output').value = '';
+            }
+    </script>
+
+    <script src="/assets/clicks.js" defer></script>
+</body>
+</html>

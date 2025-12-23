@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="/favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具使用排行 - JustHTMLs</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools-rank.html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onerror="this.onerror=null;this.href='/assets/vendor/fontawesome/css/all.min.css';">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #14b8a6;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.2), transparent 55%), var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .hero {
+            padding: 40px 0 20px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .controls label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .controls select {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .rank-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .rank-item {
+            display: grid;
+            grid-template-columns: 56px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.8);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .rank-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.6);
+        }
+
+        .rank-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+
+        .rank-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .rank-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .rank-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .rank-metric {
+            text-align: right;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 720px) {
+            .rank-item {
+                grid-template-columns: 48px 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .rank-metric {
+                grid-column: 1 / -1;
+                text-align: left;
+                padding-left: 64px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-row">
+                <a class="back-link" href="/index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <div class="page-title">工具使用排行</div>
+                <div class="controls">
+                    <label for="rank-metric">排行指标</label>
+                    <select id="rank-metric">
+                        <option value="pv-total">总 PV</option>
+                        <option value="uv-total">总 UV</option>
+                        <option value="pv-day">今日 PV</option>
+                        <option value="uv-day">今日 UV</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>工具使用排行</h1>
+                <p>基于 PV/UV 统计，展示热门工具的整体使用情况。</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="panel">
+                <div id="rank-list" class="rank-list">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> 正在加载排行数据...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let tools = [];
+        let stats = {};
+
+        async function loadTools() {
+            const response = await fetch('/index.json');
+            if (!response.ok) {
+                throw new Error('加载工具列表失败');
+            }
+            const data = await response.json();
+            tools = data.tools || [];
+        }
+
+        async function loadStats() {
+            if (tools.length === 0) return;
+            const ids = tools.map(tool => tool.id).join(',');
+            const response = await fetch(`/api/clicks?ids=${encodeURIComponent(ids)}`);
+            if (!response.ok) {
+                throw new Error('加载统计失败');
+            }
+            const data = await response.json();
+            stats = data.counts || {};
+        }
+
+        function getMetricValue(stat, metric) {
+            if (!stat) return 0;
+            if (metric === 'pv-total') return stat.pv?.total || 0;
+            if (metric === 'uv-total') return stat.uv?.total || 0;
+            if (metric === 'pv-day') return stat.pv?.day || 0;
+            if (metric === 'uv-day') return stat.uv?.day || 0;
+            return 0;
+        }
+
+        function getMetricLabel(metric) {
+            if (metric === 'pv-total') return '总 PV';
+            if (metric === 'uv-total') return '总 UV';
+            if (metric === 'pv-day') return '今日 PV';
+            if (metric === 'uv-day') return '今日 UV';
+            return '';
+        }
+
+        function formatNumber(value) {
+            if (typeof value !== 'number') return '--';
+            return value.toLocaleString('zh-CN');
+        }
+
+        function renderRankList(metric) {
+            const container = document.getElementById('rank-list');
+            const list = tools
+                .map(tool => ({
+                    tool,
+                    stat: stats[tool.id],
+                    metricValue: getMetricValue(stats[tool.id], metric)
+                }))
+                .sort((a, b) => b.metricValue - a.metricValue);
+
+            if (list.length === 0) {
+                container.innerHTML = '<div class="empty-state">暂无排行数据</div>';
+                return;
+            }
+
+            const label = getMetricLabel(metric);
+            container.innerHTML = list.map((item, index) => {
+                return `
+                    <div class="rank-item">
+                        <div class="rank-badge">${index + 1}</div>
+                        <div class="rank-info">
+                            <a class="rank-name" href="/${item.tool.detail}">${item.tool.name}</a>
+                            <div class="rank-meta">${item.tool.description}</div>
+                        </div>
+                        <div class="rank-metric">
+                            <div class="metric-value">${formatNumber(item.metricValue)}</div>
+                            <div class="metric-label">${label}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function init() {
+            try {
+                await loadTools();
+                await loadStats();
+                renderRankList(document.getElementById('rank-metric').value);
+            } catch (error) {
+                document.getElementById('rank-list').innerHTML = `<div class="empty-state">${error.message}</div>`;
+            }
+        }
+
+        document.getElementById('rank-metric').addEventListener('change', (event) => {
+            renderRankList(event.target.value);
+        });
+
+        init();
+    </script>
+
+    <script src="/assets/clicks.js" defer></script>
+</body>
+</html>

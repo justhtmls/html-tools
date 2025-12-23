@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT 生成器</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/jwt-generator/app.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ef4444 0%, #ef4444 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #ef4444 0%, #ef4444 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .output-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .output-box label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .output-box textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #d0d7de;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JWT 生成器</h1>
+            <p>生成 JSON Web Token（支持 HS256/384/512）</p>
+        </div>
+
+        <div class="card">
+            <div class="form-grid">
+    <div class="form-field">
+        <label for="jwt-header">Header (JSON)</label>
+        <textarea id="jwt-header" rows="4">{"typ":"JWT"}</textarea>
+    </div>
+    <div class="form-field">
+        <label for="jwt-payload">Payload (JSON)</label>
+        <textarea id="jwt-payload" rows="6">{"sub":"1234567890","name":"JustHTMLs","iat":1516239022}</textarea>
+    </div>
+    <div class="form-field">
+        <label for="jwt-secret">密钥</label>
+        <input id="jwt-secret" type="text" placeholder="请输入签名密钥">
+    </div>
+    <div class="form-field">
+        <label for="jwt-alg">算法</label>
+        <select id="jwt-alg">
+            <option value="HS256">HS256</option>
+            <option value="HS384">HS384</option>
+            <option value="HS512">HS512</option>
+        </select>
+    </div>
+</div>
+<div class="form-actions">
+    <button class="btn" onclick="generateJWT()">生成 JWT</button>
+    <button class="btn btn-secondary" onclick="clearOutput()">清空输出</button>
+</div>
+<div class="output-box">
+    <label>JWT 输出</label>
+    <textarea id="jwt-output" rows="5" readonly></textarea>
+</div>
+        </div>
+    </div>
+
+    <script>
+        function base64UrlEncode(input) {
+    const bytes = new TextEncoder().encode(input);
+    let binary = '';
+    for (const byte of bytes) binary += String.fromCharCode(byte);
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
+async function hmacSign(data, secret, alg) {
+    const hashMap = { HS256: 'SHA-256', HS384: 'SHA-384', HS512: 'SHA-512' };
+    const key = await crypto.subtle.importKey(
+        'raw',
+        new TextEncoder().encode(secret),
+        { name: 'HMAC', hash: hashMap[alg] },
+        false,
+        ['sign']
+    );
+    const signature = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(data));
+    const bytes = new Uint8Array(signature);
+    let binary = '';
+    for (const byte of bytes) binary += String.fromCharCode(byte);
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+}
+
+async function generateJWT() {
+    const headerText = document.getElementById('jwt-header').value.trim();
+    const payloadText = document.getElementById('jwt-payload').value.trim();
+    const secret = document.getElementById('jwt-secret').value;
+    const alg = document.getElementById('jwt-alg').value;
+    const output = document.getElementById('jwt-output');
+
+    if (!secret) {
+        alert('请输入签名密钥');
+        return;
+    }
+
+    try {
+        const headerObj = headerText ? JSON.parse(headerText) : {};
+        headerObj.alg = alg;
+        headerObj.typ = headerObj.typ || 'JWT';
+        const payloadObj = JSON.parse(payloadText);
+
+        const header = base64UrlEncode(JSON.stringify(headerObj));
+        const payload = base64UrlEncode(JSON.stringify(payloadObj));
+        const data = `${header}.${payload}`;
+        const signature = await hmacSign(data, secret, alg);
+        output.value = `${data}.${signature}`;
+    } catch (error) {
+        alert('解析 JSON 失败: ' + error.message);
+    }
+}
+
+function clearOutput() {
+    document.getElementById('jwt-output').value = '';
+}
+    </script>
+
+    <script src="/assets/clicks.js" defer></script>
+</body>
+</html>
