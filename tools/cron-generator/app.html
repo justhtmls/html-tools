@@ -294,14 +294,130 @@
             return desc.join('') + '执行';
         }
 
-        function calculateNextRuns(cron) {
-            const runs = [];
-            const now = new Date();
+        function parseCronPart(part, min, max) {
+            const values = new Set();
 
-            // 简化的下次运行时间计算
+            if (part === '*') {
+                for (let i = min; i <= max; i++) values.add(i);
+                return values;
+            }
+
+            if (part.startsWith('*/')) {
+                const step = parseInt(part.slice(2));
+                for (let i = min; i <= max; i += step) values.add(i);
+                return values;
+            }
+
+            if (part.includes('-')) {
+                const [start, end] = part.split('-').map(Number);
+                for (let i = start; i <= end; i++) values.add(i);
+                return values;
+            }
+
+            values.add(parseInt(part));
+            return values;
+        }
+
+        function getNextRun(cronParts, startDate) {
+            const [minutePart, hourPart, dayPart, monthPart, weekdayPart] = cronParts;
+
+            const minutes = minutePart === '*' ? null : parseCronPart(minutePart, 0, 59);
+            const hours = hourPart === '*' ? null : parseCronPart(hourPart, 0, 23);
+            const days = dayPart === '*' ? null : (dayPart === 'L' ? null : parseCronPart(dayPart, 1, 31));
+            const months = monthPart === '*' ? null : parseCronPart(monthPart, 1, 12);
+            const weekdays = weekdayPart === '*' ? null : parseCronPart(weekdayPart, 0, 6);
+
+            let current = new Date(startDate);
+            const startYear = current.getFullYear();
+            const startMonth = current.getMonth();
+            const startDay = current.getDate();
+            const startHour = current.getHours();
+            const startMin = current.getMinutes();
+
+            current.setSeconds(0, 0);
+
+            // 最多往前推2年
+            for (let yearOffset = 0; yearOffset <= 2; yearOffset++) {
+                const year = startYear + yearOffset;
+                const monthStart = (yearOffset === 0) ? startMonth : 0;
+
+                for (let month = monthStart; month < 12; month++) {
+                    const monthNum = month + 1;
+
+                    // 检查月份限制
+                    if (months !== null && !months.has(monthNum)) {
+                        continue;
+                    }
+
+                    // 获取该月天数
+                    const daysInMonth = new Date(year, month + 1, 0).getDate();
+                    const dayStart = (yearOffset === 0 && month === startMonth) ? startDay : 1;
+
+                    for (let day = dayStart; day <= daysInMonth; day++) {
+                        const date = new Date(year, month, day);
+                        const weekday = date.getDay();
+
+                        // 检查日期或星期限制（两者是OR关系，只要满足一个即可）
+                        if (days !== null && !days.has(day)) {
+                            // 如果指定了日期且当前日期不匹配，检查星期
+                            if (weekdays === null || !weekdays.has(weekday)) {
+                                continue;
+                            }
+                        }
+                        if (weekdays !== null && !weekdays.has(weekday)) {
+                            // 如果指定了星期且当前星期不匹配，检查日期
+                            if (days === null || !days.has(day)) {
+                                continue;
+                            }
+                        }
+                        if (dayPart === 'L' && day !== daysInMonth) continue;
+
+                        const hourStart = (yearOffset === 0 && month === startMonth && day === startDay) ? startHour : 0;
+
+                        for (let hour = hourStart; hour < 24; hour++) {
+                            // 检查小时限制
+                            if (hours !== null && !hours.has(hour)) continue;
+
+                            const minStart = (yearOffset === 0 && month === startMonth && day === startDay && hour === startHour) ? startMin + 1 : 0;
+
+                            for (let min = minStart; min < 60; min++) {
+                                // 检查分钟限制
+                                if (minutes !== null && !minutes.has(min)) continue;
+
+                                const nextRun = new Date(year, month, day, hour, min);
+                                if (nextRun > startDate) {
+                                    return nextRun;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        function calculateNextRuns(cron) {
+            const parts = cron.split(' ');
+            const runs = [];
+            let current = new Date();
+
             for (let i = 0; i < 5; i++) {
-                const next = new Date(now.getTime() + i * 60000);
-                runs.push(next.toLocaleString('zh-CN'));
+                const next = getNextRun(parts, current);
+                if (next) {
+                    runs.push(next.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false
+                    }));
+                    current = next;
+                } else {
+                    break;
+                }
             }
 
             document.getElementById('next-runs').innerHTML = runs.map(r => `<li>${r}</li>`).join('');
