@@ -196,6 +196,7 @@
                 <button class="btn" id="remove">开始清理</button>
                 <button class="btn btn-secondary" id="copy">复制结果</button>
                 <button class="btn btn-secondary" id="clear">清空</button>
+                <button class="btn btn-secondary" id="sample">加载示例</button>
             </div>
             <div class="meta">移除数量：<span id="count">0</span></div>
             <div class="output-box">
@@ -234,7 +235,10 @@
             output.value = '';
             count.textContent = '0';
         });
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            input.value = '好评👍👍，谢谢你的支持😊！';
+            removeEmoji();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>

@@ -211,6 +211,7 @@ B,12,8"></textarea>
                     <button class="btn" id="generate">生成表格</button>
                     <button class="btn btn-secondary" id="copy">复制结果</button>
                     <button class="btn btn-secondary" id="clear">清空</button>
+                <button class="btn btn-secondary" id="sample">加载示例</button>
                 </div>
             </div>
             <div class="output-box">
@@ -277,7 +278,16 @@ B,12,8"></textarea>
             input.value = '';
             output.value = '';
         });
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            input.value = '名称,价格,库存
+苹果,3,120
+香蕉,2,90
+橙子,4,60';
+            delimiterSelect.value = 'comma';
+            customDelimiter.value = '';
+            hasHeader.checked = true;
+            generateTable();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>

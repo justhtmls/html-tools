@@ -214,6 +214,7 @@
                         <button class="btn" id="join">开始合并</button>
                         <button class="btn btn-secondary" id="copy">复制结果</button>
                         <button class="btn btn-secondary" id="clear">清空</button>
+                        <button class="btn btn-secondary" id="sample">加载示例</button>
                     </div>
                     <div class="meta">共 <span id="count">0</span> 项</div>
                 </div>
@@ -274,7 +275,17 @@
             output.value = '';
             count.textContent = '0';
         });
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            input.value = 'apple
+banana
+orange
+kiwi';
+            delimiterSelect.value = 'comma-space';
+            customDelimiter.value = '';
+            trimToggle.checked = true;
+            skipEmptyToggle.checked = true;
+            joinText();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>

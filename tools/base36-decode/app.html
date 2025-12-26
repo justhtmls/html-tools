@@ -196,6 +196,7 @@
                 <button class="btn" id="decode">开始解码</button>
                 <button class="btn btn-secondary" id="copy">复制结果</button>
                 <button class="btn btn-secondary" id="clear">清空</button>
+            <button class="btn btn-secondary" id="sample">加载示例</button>
             </div>
             <div class="status" id="status">等待输入</div>
             <div class="output-box">
@@ -252,7 +253,10 @@
             output.value = '';
             setStatus('等待输入');
         });
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            input.value = '21i3v9';
+            decodeBase36();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>

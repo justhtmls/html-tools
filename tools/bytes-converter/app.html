@@ -212,6 +212,7 @@
                 </div>
                 <div class="actions">
                     <button class="btn" id="convert">开始换算</button>
+                    <button class="btn btn-secondary" id="sample">加载示例</button>
                 </div>
             </div>
             <div class="result-grid" id="results">
@@ -244,7 +245,12 @@
 
         document.getElementById('convert').addEventListener('click', convertBytes);
         convertBytes();
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            valueInput.value = '1.5';
+            unitSelect.value = 'GB';
+            baseSelect.value = '1024';
+            convertBytes();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>

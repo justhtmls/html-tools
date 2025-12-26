@@ -202,6 +202,7 @@
                     <button class="btn" id="wrap">开始换行</button>
                     <button class="btn btn-secondary" id="copy">复制结果</button>
                     <button class="btn btn-secondary" id="clear">清空</button>
+                    <button class="btn btn-secondary" id="sample">加载示例</button>
                 </div>
             </div>
             <div class="output-box">
@@ -267,7 +268,12 @@
             input.value = '';
             output.value = '';
         });
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            input.value = '这是一段需要自动换行的示例文本，用于演示如何按照固定宽度拆分段落内容。';
+            widthInput.value = '40';
+            breakWords.checked = false;
+            wrapText();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>

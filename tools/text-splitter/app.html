@@ -213,6 +213,7 @@
                         <button class="btn" id="split">开始拆分</button>
                         <button class="btn btn-secondary" id="copy">复制结果</button>
                         <button class="btn btn-secondary" id="clear">清空</button>
+                        <button class="btn btn-secondary" id="sample">加载示例</button>
                     </div>
                     <div class="meta">共 <span id="count">0</span> 项</div>
                 </div>
@@ -273,7 +274,14 @@
             output.value = '';
             count.textContent = '0';
         });
-        
+        document.getElementById('sample').addEventListener('click', () => {
+            input.value = '苹果, 香蕉, 梨, 西瓜';
+            delimiterSelect.value = 'comma';
+            customDelimiter.value = '';
+            trimToggle.checked = true;
+            skipEmptyToggle.checked = true;
+            splitText();
+        });
     </script>
     <script src="/assets/clicks.js" defer></script>
 </body>
