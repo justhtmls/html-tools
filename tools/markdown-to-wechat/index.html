@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 转公众号排版 - JustHTMLs</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/markdown-to-wechat/">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0b1220 0%, #0f2748 50%, #0b1a2b 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #e2f2ff;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.04em;
+        }
+
+        .header p {
+            color: #9fb6d8;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(8, 12, 25, 0.45);
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #0f2748;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #4b5563;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .features li:before {
+            content: "•";
+            color: #38bdf8;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px 10px 10px 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(14, 165, 233, 0.35);
+        }
+
+        .btn-secondary {
+            background: #475569;
+        }
+
+        .preview {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .preview iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Markdown 转公众号排版</h1>
+            <p>赛博科技蓝色系，一键排版适配公众号</p>
+        </div>
+
+        <div class="card">
+            <h2>关于这个工具</h2>
+            <p>将 Markdown 直接转换为公众号友好的排版样式，强调清晰层级、舒适行距与科技蓝色点缀，适合技术文章、产品更新与活动公告。</p>
+
+            <h2>功能特点</h2>
+            <ul class="features">
+                <li>赛博科技蓝色主题，标题与重点更突出</li>
+                <li>自动优化段落、列表、引用、代码块样式</li>
+                <li>支持一键复制公众号 HTML</li>
+                <li>预览区模拟公众号排版效果</li>
+                <li>完全本地运行，隐私安全</li>
+            </ul>
+
+            <div style="margin-top: 30px;">
+                <a href="app.html" class="btn">开始使用</a>
+                <a href="https://github.com/justhtmls/html-tools/tree/main/tools/markdown-to-wechat" target="_blank" class="btn btn-secondary">查看源码</a>
+                <a href="../../index.html" class="btn btn-secondary">返回首页</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>快速预览</h2>
+            <div class="preview">
+                <iframe src="app.html" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/clicks.js" defer></script>
+</body>
+</html>

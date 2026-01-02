@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2025-12-31",
+  "lastUpdated": "2026-01-02",
   "tools": [
     {
       "id": "json-to-yaml",
@@ -3051,6 +3051,31 @@
       "createdAt": "2025-12-31",
       "updatedAt": "2025-12-31",
       "featured": false,
+      "repo": "https://github.com/justhtmls/html-tools"
+    },
+    {
+      "id": "markdown-to-wechat",
+      "name": "Markdown 转公众号排版",
+      "slug": "markdown-to-wechat",
+      "category": "converter",
+      "tags": [
+        "markdown",
+        "wechat",
+        "formatter",
+        "article"
+      ],
+      "author": "JustHTMLs",
+      "authorUrl": "https://github.com/justhtmls",
+      "version": "1.0.0",
+      "description": "将 Markdown 转换为公众号排版样式，赛博科技蓝色系",
+      "longDescription": "将 Markdown 直接转换为公众号友好的排版样式，强调清晰层级与科技蓝色点缀，支持一键复制公众号 HTML。",
+      "icon": "💠",
+      "color": "#38bdf8",
+      "entry": "tools/markdown-to-wechat/app.html",
+      "detail": "tools/markdown-to-wechat/index.html",
+      "createdAt": "2026-01-02",
+      "updatedAt": "2026-01-02",
+      "featured": true,
       "repo": "https://github.com/justhtmls/html-tools"
     }
   ],

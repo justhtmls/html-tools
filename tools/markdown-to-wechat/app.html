@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="../../favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown 转公众号排版</title>
+    <link rel="canonical" href="https://www.htmls.dev/tools/markdown-to-wechat/app.html">
+    <style>
+        :root {
+            --bg-dark: #0b1220;
+            --bg-panel: rgba(255, 255, 255, 0.96);
+            --accent: #38bdf8;
+            --accent-strong: #0ea5e9;
+            --text-dark: #0f172a;
+            --text-soft: #475569;
+            --border: rgba(148, 163, 184, 0.35);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at top left, #143a66 0%, #0b1220 45%, #07101c 100%);
+            min-height: 100vh;
+            padding: 24px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #e2f2ff;
+            margin-bottom: 28px;
+        }
+
+        .header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        .header p {
+            color: #9fb6d8;
+        }
+
+        .card {
+            background: var(--bg-panel);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(7, 10, 20, 0.45);
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #0f172a;
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .editor-panel {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .editor-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-soft);
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--accent-strong);
+            color: var(--text-dark);
+        }
+
+        .editor-textarea {
+            width: 100%;
+            flex: 1;
+            min-height: 520px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: none;
+            background: #ffffff;
+            color: #0f172a;
+            transition: border-color 0.2s ease;
+        }
+
+        .editor-textarea:focus {
+            outline: none;
+            border-color: var(--accent-strong);
+        }
+
+        .preview-content {
+            flex: 1;
+            min-height: 520px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff;
+            overflow-y: auto;
+        }
+
+        .wx-article {
+            font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: #1f2937;
+            line-height: 1.75;
+        }
+
+        .wx-article h1 {
+            font-size: 1.9rem;
+            margin: 0 0 1rem 0;
+            color: #0b2a4a;
+            border-bottom: 2px solid #bae6fd;
+            padding-bottom: 0.6rem;
+        }
+
+        .wx-article h2 {
+            font-size: 1.4rem;
+            margin: 1.6rem 0 0.8rem;
+            color: #0f4c81;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .wx-article h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 6px;
+            height: 18px;
+            background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+            border-radius: 999px;
+        }
+
+        .wx-article h3 {
+            font-size: 1.15rem;
+            margin: 1.2rem 0 0.6rem;
+            color: #115e9b;
+        }
+
+        .wx-article p {
+            margin: 0 0 1rem;
+            color: #334155;
+        }
+
+        .wx-article strong {
+            color: #0f4c81;
+        }
+
+        .wx-article a {
+            color: #0ea5e9;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(14, 165, 233, 0.5);
+        }
+
+        .wx-article ul,
+        .wx-article ol {
+            margin: 0 0 1rem 1.2rem;
+        }
+
+        .wx-article li {
+            margin: 0.4rem 0;
+        }
+
+        .wx-article blockquote {
+            margin: 1.2rem 0;
+            padding: 0.8rem 1rem;
+            background: #f0f9ff;
+            border-left: 4px solid #38bdf8;
+            color: #475569;
+        }
+
+        .wx-article code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: "Courier New", monospace;
+            font-size: 0.92em;
+            color: #0f172a;
+        }
+
+        .wx-article pre {
+            background: #0b1a2b;
+            color: #e2f2ff;
+            padding: 16px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .wx-article pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        .wx-article img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .wx-article table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .wx-article th,
+        .wx-article td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .wx-article th {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .wx-article hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 1.8rem 0;
+        }
+
+        .tip {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 980px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+
+            .editor-textarea,
+            .preview-content {
+                min-height: 360px;
+            }
+        }
+
+        .tool-doc-link,
+        .tool-home-link {
+            position: fixed;
+            top: 16px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #0f172a;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            z-index: 9999;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .tool-doc-link {
+            right: 16px;
+        }
+
+        .tool-home-link {
+            right: 74px;
+        }
+
+        .tool-doc-link:hover,
+        .tool-home-link:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: rgba(15, 23, 42, 0.2);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <a class="tool-home-link" href="../../index.html">首页</a>
+    <a class="tool-doc-link" href="index.html">说明</a>
+    <div class="container">
+        <div class="header">
+            <h1>Markdown 转公众号排版</h1>
+            <p>赛博科技蓝色系公众号样式，所见即所得</p>
+        </div>
+
+        <div class="card">
+            <div class="action-bar">
+                <div class="btn-group">
+                    <button class="btn" onclick="loadExample()">加载示例</button>
+                    <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn" onclick="copyWechatHtml()">复制公众号内容</button>
+                    <button class="btn btn-secondary" onclick="copyPreviewHtml()">复制预览 HTML</button>
+                </div>
+            </div>
+            <div class="editor-container">
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span class="editor-title">Markdown 输入</span>
+                        <div class="editor-actions">
+                            <button class="icon-btn" onclick="pasteMarkdown()">粘贴</button>
+                            <button class="icon-btn" onclick="clearAll()">清空</button>
+                        </div>
+                    </div>
+                    <textarea class="editor-textarea" id="markdown-input" placeholder="# 标题：赛博科技蓝色系公众号排版
+
+## 开场
+用一段简短引言抓住读者注意力。
+
+### 亮点一
+- 高对比蓝色重点
+- 自适应间距
+- 清晰层级
+
+> 引用内容会自动转换成醒目的蓝色块。
+
+```js
+const theme = "cyber-blue";
+console.log(theme);
+```
+
+**粗体** 与 *斜体* 会有轻微强调，~~删除线~~ 支持。
+
+[点击查看文档](https://example.com)
+
+| 模块 | 说明 | 状态 |
+| --- | --- | --- |
+| 主题 | 赛博科技蓝 | ✅ |
+| 表格 | 自动排版 | ✅ |
+" oninput="convert()"></textarea>
+                    <div class="tip">提示：图片请使用可访问的在线链接；复制公众号 HTML 后可直接粘贴到公众号编辑器。</div>
+                </div>
+
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <span class="editor-title">公众号排版预览</span>
+                        <div class="editor-actions">
+                            <button class="icon-btn" onclick="copyWechatHtml()">复制</button>
+                        </div>
+                    </div>
+                    <div class="preview-content" id="html-preview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function convert() {
+            const markdown = document.getElementById('markdown-input').value;
+            const html = parseMarkdown(markdown);
+            document.getElementById('html-preview').innerHTML = `<div class="wx-article">${html}</div>`;
+        }
+
+        function parseMarkdown(markdown) {
+            let html = parseTables(markdown);
+
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, lang, code) {
+                return '<pre><code class="language-' + (lang || '') + '">' + escapeHtml(code.trim()) + '</code></pre>';
+            });
+
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+            html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
+            html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+            html = html.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+            html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            html = html.replace(/___(.+?)___/g, '<strong><em>$1</em></strong>');
+            html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+            html = html.replace(/_(.+?)_/g, '<em>$1</em>');
+            html = html.replace(/~~(.+?)~~/g, '<del>$1</del>');
+            html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            html = html.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1">');
+            html = html.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+            html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>\n?)+/g, function(match) {
+                if (match.includes('<ul>')) {
+                    return match;
+                }
+                return '<ol>' + match + '</ol>';
+            });
+            html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+            html = html.replace(/(<blockquote>.*<\/blockquote>\n?)+/g, function(match) {
+                return '<blockquote>' + match.replace(/<\/?blockquote>/g, '').trim() + '</blockquote>';
+            });
+            html = html.replace(/^-{3,}$/gm, '<hr>');
+            html = html.replace(/^\*{3,}$/gm, '<hr>');
+            html = html.replace(/^(?!<[h|u|o|b|p|d|t])(.+)$/gm, '<p>$1</p>');
+            html = html.replace(/\n\n/g, '</p>\n<p>');
+            html = html.replace(/<p><(h[1-6]|ul|ol|blockquote|pre|hr|table|thead|tbody|tr|td|th)/g, '<$1');
+            html = html.replace(/<\/(h[1-6]|ul|ol|blockquote|pre|hr|table|thead|tbody|tr|td|th)><\/p>/g, '</$1>');
+            html = html.replace(/<p><\/p>/g, '');
+
+            return html;
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function parseTables(markdown) {
+            const lines = markdown.split('\n');
+            const out = [];
+            let i = 0;
+
+            while (i < lines.length) {
+                const line = lines[i];
+                const next = lines[i + 1] || '';
+                const isTableHeader = line.includes('|') && /^\s*\|?[\s:-]+\|[\s|:-]+\|?\s*$/.test(next);
+
+                if (isTableHeader) {
+                    const headers = splitTableRow(line);
+                    const rows = [];
+                    i += 2;
+                    while (i < lines.length && lines[i].includes('|')) {
+                        if (lines[i].trim() === '') break;
+                        rows.push(splitTableRow(lines[i]));
+                        i += 1;
+                    }
+                    out.push(renderTable(headers, rows));
+                    continue;
+                }
+
+                out.push(line);
+                i += 1;
+            }
+
+            return out.join('\n');
+        }
+
+        function splitTableRow(line) {
+            const trimmed = line.trim();
+            const raw = trimmed.startsWith('|') ? trimmed.slice(1) : trimmed;
+            const stripped = raw.endsWith('|') ? raw.slice(0, -1) : raw;
+            return stripped.split('|').map(cell => cell.trim());
+        }
+
+        function renderTable(headers, rows) {
+            const head = headers.map(cell => `<th>${cell}</th>`).join('');
+            const body = rows.map((row) => {
+                const cols = headers.map((_, idx) => `<td>${row[idx] || ''}</td>`).join('');
+                return `<tr>${cols}</tr>`;
+            }).join('');
+            return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+        }
+
+        function getPreviewHtml() {
+            const markdown = document.getElementById('markdown-input').value;
+            return `<div class="wx-article">${parseMarkdown(markdown)}</div>`;
+        }
+
+        function getWechatHtml() {
+            const markdown = document.getElementById('markdown-input').value;
+            const content = applyInlineStyles(parseMarkdown(markdown));
+            return `<section style="font-family: Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif; color: #1f2937; line-height: 1.75; padding: 0 24px;">${content}</section>`;
+        }
+
+        function copyWithFallback(text, successMessage) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast(successMessage);
+                }).catch(() => {
+                    fallbackCopy(text, successMessage);
+                });
+            } else {
+                fallbackCopy(text, successMessage);
+            }
+        }
+
+        function fallbackCopy(text, successMessage) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            const ok = document.execCommand('copy');
+            document.body.removeChild(textarea);
+            if (ok) {
+                showToast(successMessage);
+            } else {
+                showToast('复制失败，请手动复制');
+            }
+        }
+
+        function copyPreviewHtml() {
+            const html = getPreviewHtml();
+            copyWithFallback(html, '预览 HTML 已复制');
+        }
+
+        function copyWechatHtml() {
+            const html = getWechatHtml();
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = html;
+            wrapper.style.position = 'fixed';
+            wrapper.style.left = '-9999px';
+            wrapper.style.top = '0';
+            document.body.appendChild(wrapper);
+
+            const range = document.createRange();
+            range.selectNodeContents(wrapper);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            const ok = document.execCommand('copy');
+            selection.removeAllRanges();
+            document.body.removeChild(wrapper);
+
+            if (ok) {
+                showToast('公众号内容已复制');
+                return;
+            }
+
+            copyWithFallback(html, '公众号 HTML 已复制');
+        }
+
+        function clearAll() {
+            document.getElementById('markdown-input').value = '';
+            convert();
+        }
+
+        function pasteMarkdown() {
+            navigator.clipboard.readText().then(text => {
+                if (text) {
+                    document.getElementById('markdown-input').value = text;
+                    convert();
+                }
+            });
+        }
+
+        function loadExample() {
+            const example = `# 标题：赛博科技蓝色系公众号排版
+
+## 开场
+一段简短引言，说明主题与价值。
+
+### 亮点一：阅读层级清晰
+- 蓝色点缀标题
+- 段落节奏舒适
+- 重点内容自动强调
+
+> 引用内容会自动转换成醒目的蓝色块。
+
+### 亮点二：代码块更易读
+
+\`\`\`js
+const theme = "cyber-blue";
+console.log(theme);
+\`\`\`
+
+**粗体** 与 *斜体* 会被轻微强调，~~删除线~~ 可用于标注旧内容。
+
+[查看文档](https://example.com)
+
+| 模块 | 说明 | 状态 |
+| --- | --- | --- |
+| 主题 | 赛博科技蓝 | ✅ |
+| 表格 | 自动排版 | ✅ |
+`;
+            document.getElementById('markdown-input').value = example;
+            convert();
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = 'position: fixed; bottom: 24px; right: 24px; background: rgba(15, 23, 42, 0.9); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13px; z-index: 9999;';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        function applyInlineStyles(html) {
+            return html
+                .replace(/<pre><code[^>]*>/g, '<pre style="background: #0b1a2b; color: #e2f2ff; padding: 16px; border-radius: 12px; overflow-x: auto; margin: 1rem 0; border: 1px solid rgba(56, 189, 248, 0.2);"><code style="background: transparent; padding: 0; color: inherit; font-family: Courier New, monospace; font-size: 0.92em;">')
+                .replace(/<pre>/g, '<pre style="background: #0b1a2b; color: #e2f2ff; padding: 16px; border-radius: 12px; overflow-x: auto; margin: 1rem 0; border: 1px solid rgba(56, 189, 248, 0.2);">')
+                .replace(/<code>/g, '<code style="background: #f1f5f9; padding: 2px 6px; border-radius: 6px; font-family: Courier New, monospace; font-size: 0.92em; color: #0f172a;">')
+                .replace(/<h1>/g, '<h1 style="font-size: 1.9rem; margin: 0 0 1rem 0; color: #0b2a4a; border-bottom: 2px solid #bae6fd; padding-bottom: 0.6rem;">')
+                .replace(/<h2>/g, '<h2 style="font-size: 1.4rem; margin: 1.6rem 0 0.8rem; color: #0f4c81; padding-left: 12px; border-left: 4px solid #38bdf8;">')
+                .replace(/<h3>/g, '<h3 style="font-size: 1.15rem; margin: 1.2rem 0 0.6rem; color: #115e9b;">')
+                .replace(/<p>/g, '<p style="margin: 0 0 1rem; color: #334155;">')
+                .replace(/<strong>/g, '<strong style="color: #0f4c81;">')
+                .replace(/<a /g, '<a style="color: #0ea5e9; text-decoration: none; border-bottom: 1px dashed rgba(14, 165, 233, 0.5);" ')
+                .replace(/<ul>/g, '<ul style="margin: 0 0 1rem 1.2rem;">')
+                .replace(/<ol>/g, '<ol style="margin: 0 0 1rem 1.2rem;">')
+                .replace(/<li>/g, '<li style="margin: 0.4rem 0;">')
+                .replace(/<blockquote>/g, '<blockquote style="margin: 1.2rem 0; padding: 0.8rem 1rem; background: #f0f9ff; border-left: 4px solid #38bdf8; color: #475569;">')
+                .replace(/<img /g, '<img style="max-width: 100%; border-radius: 12px; margin: 1rem 0;" ')
+                .replace(/<table>/g, '<table style="border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem;">')
+                .replace(/<th>/g, '<th style="border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left; background: #f1f5f9; color: #0f172a;">')
+                .replace(/<td>/g, '<td style="border: 1px solid #e2e8f0; padding: 8px 12px; text-align: left;">')
+                .replace(/<hr>/g, '<hr style="border: none; border-top: 1px solid #e2e8f0; margin: 1.8rem 0;">');
+        }
+
+        convert();
+    </script>
+    <script src="../../assets/clicks.js" defer></script>
+</body>
+</html>
