@@ -253,15 +253,9 @@
                         if (mode.value === 'chars') {
                             output.value = value.split('').reverse().join('');
                         } else if (mode.value === 'lines') {
-                            output.value = value.split(/
-        ?
-        /).reverse().join('
-        ');
+                            output.value = value.split(/\r?\n/).reverse().join('\n');
                         } else {
-                            output.value = value.split(/
-        ?
-        /).map(line => line.split('').reverse().join('')).join('
-        ');
+                            output.value = value.split(/\r?\n/).map(line => Array.from(line).reverse().join('')).join('\n');
                         }
                     }
 

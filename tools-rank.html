@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="/favicon.svg">
+    <link rel="icon" href="favicon.svg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>工具使用排行 - JustHTMLs</title>
     <link rel="canonical" href="https://www.htmls.dev/tools-rank.html">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onerror="this.onerror=null;this.href='/assets/vendor/fontawesome/css/all.min.css';">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
     <style>
         :root {
             --primary: #6366f1;
@@ -211,7 +211,7 @@
     <header>
         <div class="container">
             <div class="header-row">
-                <a class="back-link" href="/index.html"><i class="fas fa-arrow-left"></i> 返回首页</a>
+                <a class="back-link" href="./"><i class="fas fa-arrow-left"></i> 返回首页</a>
                 <div class="page-title">工具使用排行</div>
                 <div class="controls">
                     <label for="rank-metric">排行指标</label>
@@ -248,7 +248,7 @@
         let stats = {};
 
         async function loadTools() {
-            const response = await fetch('/index.json');
+            const response = await fetch('index.json');
             if (!response.ok) {
                 throw new Error('加载工具列表失败');
             }
@@ -259,7 +259,7 @@
         async function loadStats() {
             if (tools.length === 0) return;
             const ids = tools.map(tool => tool.id).join(',');
-            const response = await fetch(`/api/clicks?ids=${encodeURIComponent(ids)}`);
+            const response = await fetch(`api/clicks?ids=${encodeURIComponent(ids)}`);
             if (!response.ok) {
                 throw new Error('加载统计失败');
             }
@@ -310,7 +310,7 @@
                     <div class="rank-item">
                         <div class="rank-badge">${index + 1}</div>
                         <div class="rank-info">
-                            <a class="rank-name" href="/${item.tool.entry}">${item.tool.name}</a>
+                            <a class="rank-name" href="${item.tool.entry}">${item.tool.name}</a>
                             <div class="rank-meta">${item.tool.description}</div>
                         </div>
                         <div class="rank-metric">

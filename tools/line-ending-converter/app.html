@@ -240,17 +240,12 @@
                     const linesEl = document.getElementById('lines');
 
                     function normalize(value) {
-                        return value.replace(/
-        /g, '
-        ').replace(/
-        /g, '
-        ');
+                        return value.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
                     }
 
                     function updateLines(value) {
                         const normalized = normalize(value);
-                        linesEl.textContent = normalized ? normalized.split('
-        ').length : '0';
+                        linesEl.textContent = normalized ? normalized.split('\n').length : '0';
                     }
 
                     function convertToLf() {
@@ -261,9 +256,7 @@
 
                     function convertToCrlf() {
                         const normalized = normalize(input.value);
-                        output.value = normalized.replace(/
-        /g, '
-        ');
+                        output.value = normalized.replace(/\n/g, '\r\n');
                         updateLines(normalized);
                     }
 

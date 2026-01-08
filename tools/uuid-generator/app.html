@@ -376,17 +376,25 @@
                     return v.toString(16);
                 });
             } else if (version === '1') {
-                // UUID v1 simulation (timestamp-based)
-                const timestamp = Date.now();
-                const timeHex = timestamp.toString(16).padStart(12, '0');
-                const clockSeq = Math.floor(Math.random() * 16384).toString(16).padStart(4, '0');
-                const node = Math.floor(Math.random() * 281474976710656).toString(16).padStart(12, '0');
-
-                return timeHex.substring(0, 8) + '-' +
-                       timeHex.substring(8, 12) + '-1' +
-                       timeHex.substring(12, 15) + '-' +
-                       clockSeq.substring(0, 1) + '0' + clockSeq.substring(1) + '-' +
-                       node;
+                // UUID v1（RFC 4122 正确实现）
+                const UUID_EPOCH = 12219292800000n; // ms between 1582-10-15 and 1970-01-01
+                const now = BigInt(Date.now());
+                const time100ns = (now + UUID_EPOCH) * 10000n;
+                const timeLow = Number(time100ns & 0xffffffffn);
+                const timeMid = Number((time100ns >> 32n) & 0xffffn);
+                const timeHi = Number((time100ns >> 48n) & 0x0fffn) | 0x1000; // version = 1
+                const clockSeq = Math.floor(Math.random() * 0x3fff);
+                const clockSeqHi = (clockSeq >> 8) | 0x80; // variant = 10xx
+                const clockSeqLow = clockSeq & 0xff;
+                const node = crypto.getRandomValues(new Uint8Array(6));
+                return (
+                    timeLow.toString(16).padStart(8, '0') + '-' +
+                    timeMid.toString(16).padStart(4, '0') + '-' +
+                    timeHi.toString(16).padStart(4, '0') + '-' +
+                    clockSeqHi.toString(16).padStart(2, '0') +
+                    clockSeqLow.toString(16).padStart(2, '0') + '-' +
+                    [...node].map(b => b.toString(16).padStart(2, '0')).join('')
+                );
             }
             return generateUUID('4');
         }
