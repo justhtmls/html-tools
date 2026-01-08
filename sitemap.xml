@@ -2,1495 +2,1495 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.htmls.dev/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/reference.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://github.com/justhtmls/html-tools/blob/main/CONTRIBUTING.md</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-yaml/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-yaml/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-formatter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-formatter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base64-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base64-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/color-picker/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/color-picker/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/regex-tester/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/regex-tester/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/url-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/url-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/qr-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/qr-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/password-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/password-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/uuid-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/uuid-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/word-counter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/word-counter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/timestamp-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/timestamp-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-diff/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-diff/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/jwt-decoder/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/jwt-decoder/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-to-base64/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-to-base64/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-to-json/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-to-json/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-to-html/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-to-html/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/hash-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/hash-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-entity/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-entity/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/case-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/case-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/css-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/css-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/cron-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/cron-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/percentage-calculator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/percentage-calculator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/lorem-ipsum/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/lorem-ipsum/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-validator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-validator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/slug-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/slug-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-deduplicator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-deduplicator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-sorter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-sorter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/line-numberer/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/line-numberer/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-cleaner/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-cleaner/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/csv-to-json/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/csv-to-json/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-csv/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-csv/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/url-parser/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/url-parser/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/contrast-checker/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/contrast-checker/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/password-strength/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/password-strength/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/date-diff/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/date-diff/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/js-formatter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/js-formatter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-formatter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-formatter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/sql-formatter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/sql-formatter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/http-status/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/http-status/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-escape/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-escape/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/url-query-builder/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/url-query-builder/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-replacer/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-replacer/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/line-ending-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/line-ending-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-reverser/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-reverser/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-compressor/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-compressor/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-resizer/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-resizer/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-to-webp/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-to-webp/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/unit-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/unit-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/bmi-calculator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/bmi-calculator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/salary-calculator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/salary-calculator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/mortgage-calculator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/mortgage-calculator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/gradient-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/gradient-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base32-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base32-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base32-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base32-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base58-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base58-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base58-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base58-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base64url-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base64url-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base64url-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base64url-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/hex-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/hex-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/hex-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/hex-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/unicode-escape/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/unicode-escape/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/unicode-unescape/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/unicode-unescape/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/rot13/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/rot13/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/caesar-cipher/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/caesar-cipher/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/morse-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/morse-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/morse-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/morse-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/binary-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/binary-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/binary-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/binary-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/js-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/js-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/sql-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/sql-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-sorter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-sorter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-formatter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-formatter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-formatter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-formatter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-minifier/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-minifier/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-xml/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-xml/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-to-json/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-to-json/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-to-yaml/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/xml-to-yaml/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-to-xml/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-to-xml/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/csv-to-yaml/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/csv-to-yaml/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-to-csv/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/yaml-to-csv/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/tsv-to-json/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/tsv-to-json/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-tsv/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-tsv/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/tsv-to-csv/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/tsv-to-csv/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/csv-to-tsv/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/csv-to-tsv/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-to-text/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-to-text/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-to-html/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-to-html/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-to-text/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-to-text/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-to-markdown/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/html-to-markdown/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-markdown/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/json-to-markdown/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/jwt-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/jwt-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/nanoid-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/nanoid-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/ulid-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/ulid-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/gitignore-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/gitignore-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/robots-txt-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/robots-txt-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/sitemap-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/sitemap-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/meta-tags-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/meta-tags-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/random-number/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/random-number/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/random-picker/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/random-picker/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-rotate/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-rotate/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-watermark/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-watermark/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-crop/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-crop/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-stitch/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-stitch/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-filter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/image-filter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-splitter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-splitter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-joiner/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-joiner/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-indenter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-indenter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-wrapper/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/text-wrapper/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/emoji-remover/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/emoji-remover/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/jsonl-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/jsonl-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base36-encode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base36-encode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base36-decode/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/base36-decode/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/bytes-converter/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/bytes-converter/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-table-generator/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-table-generator/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/dice-roller/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/dice-roller/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/draw-lots/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/draw-lots/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/rock-paper-scissors/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/rock-paper-scissors/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/countdown-timer/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/countdown-timer/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/daily-quote/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/daily-quote/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-to-wechat/</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.htmls.dev/tools/markdown-to-wechat/app.html</loc>
-    <lastmod>2026-01-02</lastmod>
+    <lastmod>2026-01-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
